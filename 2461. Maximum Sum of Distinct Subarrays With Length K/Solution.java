@@ -1,38 +1,25 @@
-import java.util.HashSet;
-
 class Solution {
-    public long maximumSubarraySum(int[] arr, int k) {
-        int l = 0;  // Left pointer for the sliding window
-        int r = 0;  // Right pointer for the sliding window
-        long maxsum = 0;  // Stores the maximum subarray sum
-        long sum = 0;  // Stores the sum of the current window
-        int n = arr.length;  // Length of the array
-        HashSet<Integer> set = new HashSet<>();  // Set to store unique elements in the window
-
-        while (r < n) {  
-            // If the current element is already in the set, shrink the window from the left
-            while (set.contains(arr[r])) {
-                sum -= arr[l];  // Remove the leftmost element from sum
-                set.remove(arr[l]);  // Remove it from the set
-                l++;  // Move left pointer forward
-            }
-
-            // Add the current element to the window
-            sum += arr[r];
-            set.add(arr[r]);
-
-            // If the window size becomes exactly 'k'
-            if (r - l + 1 == k) {
-                maxsum = Math.max(maxsum, sum);  // Update maxsum if the current sum is greater
-                
-                // Slide the window by removing the leftmost element
-                sum -= arr[l];
-                set.remove(arr[l]);
-                l++;
-            }
-
-            r++;  // Expand the window by moving the right pointer
+    public int maxScore(int[] arr, int k) {
+        int leftsum = 0;
+        int n = arr.length;
+        
+        // Calculate the initial sum by picking the first k elements from the left
+        for (int i = 0; i <= k - 1; i++) {
+            leftsum += arr[i];
         }
-        return maxsum;  // Return the maximum sum found
+        
+        int maxsum = leftsum; // Store the maximum sum found so far
+        int idx = n - 1; // Pointer to the last element of the array
+        int rightsum = 0; // Sum of elements taken from the right side
+        
+        // Iterate backward from the last selected left element
+        for (int i = k - 1; i >= 0; i--) {
+            leftsum -= arr[i]; // Remove the leftmost selected element
+            rightsum += arr[idx]; // Add an element from the right side
+            idx--; // Move the right pointer left
+            maxsum = Math.max(leftsum + rightsum, maxsum); // Update the maximum sum if needed
+        }
+        
+        return maxsum; // Return the maximum possible sum
     }
 }
