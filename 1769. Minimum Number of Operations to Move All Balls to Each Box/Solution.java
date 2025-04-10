@@ -21,3 +21,38 @@ class Solution {
 
   }
 }
+
+
+
+
+
+//    =========   O(n) approach ==========
+
+
+class Solution {
+    public int[] minOperations(String b) {
+        int n = b.length();
+        int leftmoves = 0;
+        int leftballs = 0;
+        int leftarr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            leftarr[i] = leftmoves;
+            leftballs += b.charAt(i) - '0';
+            leftmoves += leftballs;
+        }
+        int rightmoves = 0;
+        int rightballs = 0;
+        int rightarr[] = new int[n];
+        for (int i = n - 1; i >= 0; i--) {
+            rightarr[i] = rightmoves;
+            rightballs += b.charAt(i) - '0';
+            rightmoves += rightballs;
+        }
+        int[] ans = new int[n];
+        for (int i = 0; i < n; i++) {
+            ans[i] = leftarr[i] + rightarr[i];
+
+        }
+        return ans;
+    }
+}
