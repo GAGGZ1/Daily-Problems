@@ -1,5 +1,5 @@
 // 1. vis[n]=t:
-//   par x -> cycle(true)
+//   par false -> cycle(true)
 // 2. vis[n]=t:
 //   par yes -> do nothing
 // 3. vis[n]=f:
