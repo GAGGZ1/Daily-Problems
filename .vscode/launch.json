@@ -1,6 +1,19 @@
 {
   "configurations": [
-    
+    {
+      "type": "java",
+      "name": "Solution",
+      "request": "launch",
+      "mainClass": "Solution",
+      "projectName": "Daily-Problems_8f21b043"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "Daily-Problems_8f21b043"
+    },
     {
       "name": "C/C++: g++ build and debug active file",
       "type": "cppdbg",
