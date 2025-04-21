@@ -51,6 +51,7 @@ public class Kosaraju {
         topSort(graph,i,vis,s);
       }
     }
+    
 
     //step2
     ArrayList<Edge>[]transpose=new ArrayList[V];
@@ -69,6 +70,7 @@ public class Kosaraju {
     //step3
     while(!s.isEmpty()){
       int curr=s.pop();
+      System.out.println("curr = "+curr);
       if(!vis[curr]){
         dfs(transpose,curr,vis);
         System.out.println();
