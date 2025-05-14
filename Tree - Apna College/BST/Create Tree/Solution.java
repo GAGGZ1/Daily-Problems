@@ -156,6 +156,37 @@ public class Solution {
 
 
   }
+  public int kthlevel(Node root,int k){
+    int level=1;
+    Queue<Node>q=new LinkedList<>();
+
+    q.add(root);
+    
+    while(!q.isEmpty()){
+      int size=q.size();
+      int sum=0;
+      for(int i=0;i<size;i++){
+        Node curr=q.poll();
+
+        if(level==k){
+          sum+=curr.data;
+        }
+        if(curr.left!=null){
+          q.add(curr.left);
+        }
+        if(curr.right!=null){
+          q.add(curr.right);
+        }
+      }
+      if(level==k){
+        return sum;
+      }
+     
+      level++;
+
+  }
+  return 0;
+  }
 
   public static void main(String[] args) {
     int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
