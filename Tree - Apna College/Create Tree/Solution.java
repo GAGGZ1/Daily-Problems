@@ -87,6 +87,75 @@ public class Solution {
       }
     }
   }
+  public static int countNodes(Node root){
+    if(root==null){
+      return 0;
+    }
+    int left=countNodes(root.left);
+    int right=countNodes(root.right);
+
+    return left+right+1;
+  }
+
+  public static int sumNodes(Node root){
+    if(root==null)return 0;
+
+    int left=sumNodes(root.left);
+    int right=sumNodes(root.right);
+
+    return left+right+root.data;
+  }
+
+  public static int heightTree(Node root){
+    if(root==null)return 0;
+    int left=heightTree(root.left);
+    int right=heightTree(root.right);
+
+    int maxheight=Math.max(left,right)+1;
+    return maxheight;
+  }
+  public static int diameter(Node root){
+    if(root==null)return 0;
+    int d1=diameter(root.left);
+    int d2=diameter(root.right);
+
+    int d3=heightTree(root.left)+heightTree(root.right)+1;
+
+    return Math.max( Math.max(d1,d2),d3);
+  }
+
+  static class Treeinfo{
+    int ht=0;
+    int dia=0;
+    
+    public Treeinfo(int ht,int dia){
+      this.ht=ht;
+      this.dia=dia;
+    }
+
+  }
+
+  public static Treeinfo diameter2(Node root){
+
+    if(root==null)return new Treeinfo(0,0);
+
+    Treeinfo left=diameter2(root.left);
+    Treeinfo right=diameter2(root.right);
+    
+    int myht=Math.max(left.ht,right.ht)+1;
+
+    int d1=left.dia;
+    int d2=right.dia;
+    int d3=left.ht+right.ht+1;
+
+    int mydia=Math.max(Math.max(d1,d2),d3);
+
+    Treeinfo myinfo=new Treeinfo(myht, mydia);
+    return myinfo;
+
+
+
+  }
 
   public static void main(String[] args) {
     int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
@@ -98,6 +167,11 @@ public class Solution {
     // inorder(root);
     // System.out.println();
     // postorder(root);
-    levelorder(root);
+    // levelorder(root);
+    // System.out.println(countNodes(root));
+    // System.out.println(sumNodes(root));
+    // System.out.println(heightTree(root));
+    // System.out.println(diameter(root));
+    System.out.println(diameter2(root).dia);
   }
 }
