@@ -6,6 +6,17 @@ public class Solution {
     return reverse(s.substring(1))+s.charAt(0);
   }
   public static void main(String[] args){
-    System.out.println(reverse("hello"));
+   long start = System.nanoTime();
+
+        System.out.println(reverse("hello"));
+
+        long end = System.nanoTime();
+
+        long timeTaken = end - start;
+
+        System.out.println("Execution time in nanoseconds: " + timeTaken);
+        double timeSeconds = timeTaken / 1_000_000_000.0;
+
+System.out.println("Time in seconds: " + timeSeconds);
   }
 }
